@@ -213,10 +213,11 @@ def forward (X, weights, biases, act_functions):
     # START CODE HERE
     #####################################################    
     # forward propagation
-    A = X
+    A_prev = X
     for l in range(1, L + 1):
-        A, cache = forward_linear(A, weights[l], biases[l], act_functions[l])
+        A, cache = forward_linear(A_prev, weights[l], biases[l], act_functions[l])
         caches[l] = cache
+        A_prev = A  # update A_prev for the next layer
 
     # clip the predicted output for numerical stability
     y_hat = np.clip(A, 1e-5, 1 - 1e-5)
@@ -317,8 +318,8 @@ def backprop_linear_layer(dA, cache, activation_function):
 
     # backprop through the summation function
     m = A_prev.shape[0]
-    dW = A_prev.T.dot(dZ) / m
-    db = np.sum(dZ, axis=0, keepdims=True).T / m
+    dW = A_prev.T.dot(dZ)
+    db = np.sum(dZ, axis=0, keepdims=True).T
     dA_prev = dZ.dot(W.T)
     #####################################################
     # END CODE HERE
