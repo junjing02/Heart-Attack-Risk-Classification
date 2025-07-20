@@ -157,7 +157,7 @@ def forward_linear(A_prev, W, b, act_function):
     # START CODE HERE
     #####################################################
     # summation phase 
-    Z = np.dot(A_prev, W) + b.T
+    Z = A_prev @ W + b.T
 
     # activation phase
     if act_function == 'sigmoid':
@@ -317,7 +317,6 @@ def backprop_linear_layer(dA, cache, activation_function):
         raise ValueError(f"Unsupported activation function: {activation_function}.")
 
     # backprop through the summation function
-    m = A_prev.shape[0]
     dW = A_prev.T.dot(dZ)
     db = np.sum(dZ, axis=0, keepdims=True).T
     dA_prev = dZ.dot(W.T)
