@@ -57,14 +57,14 @@ def standardize(X_train, X_val):
     ------------
     - X_train: numpy, dtype float64, shape = (M_train, 13)
          The original input matrix for the training set
-    - X_val: numpy, dtype int64, shape = (M_val, 1)
+    - X_val: numpy, dtype float64, shape = (M_val, 1)
          The original input matrix for the validation set
          
     Returns:
     ------------
     - X_train: numpy, dtype float64, shape = (M_train, 13)
          The standardized input matrix for the training set
-    - X_val: numpy, dtype int64, shape = (M_val, 1)
+    - X_val: numpy, dtype float64, shape = (M_val, 1)
          The standardized input matrix for the validation set
     '''
     #####################################################
